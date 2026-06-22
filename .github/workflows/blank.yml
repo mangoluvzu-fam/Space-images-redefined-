@@ -1,4 +1,55 @@
-# This is a basic workflow to help you get started with Actions
+# This is a basic workflow to help you get started with ActionsCore Concepts
+
+· Trigger – What starts the workflow (on: push, pull_request, schedule, workflow_dispatch)
+· Job – A set of steps that run on a runner (VM or container)
+· Step – Individual tasks (run scripts or use actions)
+· Action – Reusable building blocks (e.g., actions/checkout@v4)
+
+Basic Structure
+
+```yaml
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a script
+        run: echo "Hello, world!"
+```
+
+Key Features
+
+· Matrix builds – Test across multiple OS/versions
+· Caching – Speed up workflows (actions/cache)
+· Artifacts – Upload/download build outputs
+· Environment variables & secrets – Store config and sensitive data
+· Conditionals – if: conditions for steps/jobs
+· Reusable workflows – Call other workflows
+
+Common Triggers
+
+Trigger Use Case
+push Run tests on commits
+pull_request Validate PRs
+schedule Cron-based (e.g., nightly)
+workflow_dispatch Manual trigger with inputs
+
+Best Practices
+
+· Pin actions to commit SHAs for security
+· Use minimal permissions (permissions: block)
+· Keep jobs under 6 hours (GitHub limit)
+· Use actions/cache for package managers (npm, pip, etc.)
+· Split large workflows into reusable pieces
+
+Debugging
+
+· Enable debug logging with secrets: ACTIONS_STEP_DEBUG=true and ACTIONS_RUNNER_DEBUG=true
+· Use tmate action for SSH access to runners
+
+---
 
 name: CI
 
